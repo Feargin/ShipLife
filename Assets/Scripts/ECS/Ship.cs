@@ -7,7 +7,7 @@ namespace ShipSimulator
     {
         public MoveData MoveData;
         public SearchData SearchData;
-        public TargetData TargetData;
+        // public TargetData TargetData;
         public CapacityData CapacityData;
         private DirectionData _directionData;
 
@@ -16,7 +16,7 @@ namespace ShipSimulator
             dstManager.AddComponentData(entity, MoveData);
             dstManager.AddComponentData(entity, SearchData);
             dstManager.AddComponentData(entity, _directionData);
-            dstManager.AddComponentData(entity, TargetData);
+            // dstManager.AddComponentData(entity, TargetData);
             dstManager.AddComponentData(entity, CapacityData);
         }
     }

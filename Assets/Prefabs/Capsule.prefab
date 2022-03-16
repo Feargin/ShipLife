@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2429420535745052713}
   - component: {fileID: 86189510115485403}
   - component: {fileID: 1644796117972766044}
-  - component: {fileID: 6993212477536293826}
+  - component: {fileID: 6314556139661131566}
   - component: {fileID: 7964249243731003615}
   - component: {fileID: 8387494804402466203}
   - component: {fileID: 4313004263207396304}
@@ -234,7 +234,7 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
---- !u!114 &6993212477536293826
+--- !u!114 &6314556139661131566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2158045279736295482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac557e57f322476e9664e84692b5b331, type: 3}
+  m_Script: {fileID: 11500000, guid: e9a8727029b543b69109a71ae798c4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7964249243731003615
@@ -262,14 +262,12 @@ MonoBehaviour:
     Mass: 0
     Force: 0
     DeflectionForce: 0
+    SpeedRotated: 0
   SearchData:
     Radius: 0
     ViewingAngle: 0
-  TargetData:
-    Target:
-      Sustenance: 0
-      Size: 0
-      IsInside: 0
+  CapacityData:
+    CapacityPower: 0
 --- !u!114 &8387494804402466203
 MonoBehaviour:
   m_ObjectHideFlags: 0
