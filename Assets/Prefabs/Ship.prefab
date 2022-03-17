@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8387494804402466203}
   - component: {fileID: 4313004263207396304}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
     z: 0
   m_PrimitiveSize:
     x: 1
-    y: 0
+    y: 0.07729958
     z: 0.48665917
   m_PrimitiveOrientation:
     Value:
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_MinimumSkinnedVertexWeight: 0.1
   m_ConvexHullGenerationParameters:
     m_SimplificationTolerance: 0.015
-    m_BevelRadius: 0.05
+    m_BevelRadius: 0
     m_MinimumAngle: 2.5000002
   m_CustomMesh: {fileID: 0}
   m_ForceUnique: 1
@@ -259,13 +259,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveData:
-    Mass: 0
-    Force: 0
-    DeflectionForce: 0
-    SpeedRotated: 0
+    Mass: 0.05
+    Force: 100
+    DeflectionForce: 5
+    SpeedRotated: 4
   SearchData:
-    Radius: 0
-    ViewingAngle: 0
+    Radius: 7
+    ViewingAngle: 45
   CapacityData:
     CapacityPower: 0
 --- !u!114 &8387494804402466203
@@ -281,10 +281,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MotionType: 0
-  m_Smoothing: 0
-  m_Mass: 1
-  m_LinearDamping: 0.01
-  m_AngularDamping: 0.05
+  m_Smoothing: 1
+  m_Mass: 1000
+  m_LinearDamping: 5
+  m_AngularDamping: 5
   m_InitialLinearVelocity:
     x: 0
     y: 0
@@ -293,7 +293,7 @@ MonoBehaviour:
     x: 0
     y: 0
     z: 0
-  m_GravityFactor: 0.09
+  m_GravityFactor: 0
   m_OverrideDefaultMassDistribution: 0
   m_CenterOfMass:
     x: 0

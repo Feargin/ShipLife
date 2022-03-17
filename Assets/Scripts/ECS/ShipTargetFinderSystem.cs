@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using TMPro;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -29,9 +30,16 @@ namespace ShipSimulator
     public struct CapacityData : IComponentData
     {
         public float CapacityPower;
+        public float CapacityMax;
+        public Entity Base;
     }
 
-    [UpdateAfter(typeof(ShipMoveSystem))]
+    [GenerateAuthoringComponent]
+    public class UICountPowerInBase : IComponentData
+    {
+        public TMP_Text PowerText;
+    }
+    
     public sealed class ShipTargetFinderSystem : SystemBase
     {
     //     private struct EntityWithPosition 
@@ -165,12 +173,17 @@ namespace ShipSimulator
     [BurstCompile]
     private struct CalculationOfAcceptableGoals : IJobParallelFor
     {
-        [ReadOnly] public NativeArray<float2> ReadyToCheck;
-        [ReadOnly] public float2 Pos;
-        [ReadOnly] public float2 Forward;
-        [ReadOnly] public SearchData Data;
+        [ReadOnly] 
+        public NativeArray<float2> ReadyToCheck;
+        [ReadOnly] 
+        public float2 Pos;
+        [ReadOnly] 
+        public float2 Forward;
+        [ReadOnly] 
+        public SearchData Data;
 
-        [WriteOnly] public NativeArray<int> ResultIndex;
+        [WriteOnly] 
+        public NativeArray<int> ResultIndex;
 
         public void Execute(int index)
         {
@@ -202,8 +215,7 @@ namespace ShipSimulator
         }
     }
 }
-
-
 }
+
 
 

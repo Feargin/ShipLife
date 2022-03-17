@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using System.Collections.Generic;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -16,7 +17,6 @@ namespace ShipSimulator
         private ComponentDataFromEntity<PowerPointData> _powerPointDataFromEntity;
         private ComponentDataFromEntity<CapacityData> _cpacityDataFromEntity;
         private EndSimulationEntityCommandBufferSystem _commandBufferSystem;
-        // private TargetData _targetData;
 
         protected override void OnCreate()
         {
@@ -43,15 +43,6 @@ namespace ShipSimulator
             }.Schedule(_stepPhysicsWorld.Simulation, ref _buildPhysicsWorld.PhysicsWorld, inputDeps);
             
             job.Complete();
-
-            // Entities.WithoutBurst().ForEach((Entity _entity, ref TargetData _targetData) =>
-            // {
-            //     if (!this._targetData.Target.Position.Equals(float2.zero) && _targetData.Target.Position.Equals( this._targetData.Target.Position))
-            //     {
-            //         Debug.Log(2222);
-            //         _ecb.SetComponent(_entity, new TargetData());
-            //     }
-            // }).Run();
             
             _commandBufferSystem.AddJobHandleForProducer(job);
             return job;
@@ -88,7 +79,6 @@ namespace ShipSimulator
                     EntityCommandBuffer.SetComponent(entityB, capacityData);
                     EntityCommandBuffer.RemoveComponent<HasTarget>(entityB);
                     EntityCommandBuffer.DestroyEntity(entityA);
-                    Debug.Log(11111);
                 }
                 else if (AllPickups.HasComponent(entityB) && AllShips.HasComponent(entityA))
                 {
@@ -99,6 +89,91 @@ namespace ShipSimulator
                     EntityCommandBuffer.SetComponent(entityA, capacityData);
                     EntityCommandBuffer.RemoveComponent<HasTarget>(entityA);
                     EntityCommandBuffer.DestroyEntity(entityB);
+                }
+            }
+        }
+    }
+    
+    [UpdateAfter(typeof(EndFramePhysicsSystem))]
+    public class BaseOnTriggerSystem : JobComponentSystem
+    {
+        private BuildPhysicsWorld _buildPhysicsWorld;
+        private StepPhysicsWorld _stepPhysicsWorld;
+        private ComponentDataFromEntity<CapacityData> _cpacityDataFromEntity;
+        private EndSimulationEntityCommandBufferSystem _commandBufferSystem;
+
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            _buildPhysicsWorld = World.GetOrCreateSystem<BuildPhysicsWorld>();
+            _stepPhysicsWorld = World.GetOrCreateSystem<StepPhysicsWorld>();
+            _commandBufferSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
+        }
+
+        protected override JobHandle OnUpdate(JobHandle inputDeps)
+        {
+            //using var _UICountPowerInBase = GetEntityQuery(ComponentType.ReadOnly<UICountPowerInBase>()).ToEntityArray(Allocator.TempJob);
+            
+            _cpacityDataFromEntity = GetComponentDataFromEntity<CapacityData>();
+            var _ecb = _commandBufferSystem.CreateCommandBuffer();
+            var job = new BaseOnTriggerJob
+            {
+                AllBase = GetComponentDataFromEntity<TagBase>(true),
+                AllShips = GetComponentDataFromEntity<TagShip>(true),
+                EntityCommandBuffer = _ecb,
+                //UICountPowerInBase = _UICountPowerInBase,
+                CpacityDataFromEntity = _cpacityDataFromEntity,
+                
+            }.Schedule(_stepPhysicsWorld.Simulation, ref _buildPhysicsWorld.PhysicsWorld, inputDeps);
+            
+            job.Complete();
+            
+            _commandBufferSystem.AddJobHandleForProducer(job);
+            return job;
+        }
+        
+        private struct BaseOnTriggerJob : ITriggerEventsJob
+        {
+            [ReadOnly] 
+            public ComponentDataFromEntity<TagBase> AllBase;
+            [ReadOnly] 
+            public ComponentDataFromEntity<TagShip> AllShips;
+            public EntityCommandBuffer EntityCommandBuffer;
+      
+            // [ReadOnly] 
+            // public NativeArray<Entity> UICountPowerInBase;
+            
+            public ComponentDataFromEntity<CapacityData> CpacityDataFromEntity;
+            
+            public void Execute(TriggerEvent triggerEvent)
+            {
+                
+                Entity entityA = triggerEvent.EntityA; 
+                Entity entityB = triggerEvent.EntityB;
+
+                if (AllBase.HasComponent(entityA) && AllShips.HasComponent(entityB))
+                {
+                    // var text = UICountPowerInBase[entityA];
+                    var capacityData = CpacityDataFromEntity[entityB];
+                    if(capacityData.CapacityPower < capacityData.CapacityMax)
+                        return;
+                    capacityData.CapacityPower = 0;
+                    EntityCommandBuffer.SetComponent(entityB, capacityData);
+                    EntityCommandBuffer.RemoveComponent<HasTarget>(entityB);
+                    // EntityCommandBuffer.DestroyEntity(entityA);
+                }
+                else if (AllBase.HasComponent(entityB) && AllShips.HasComponent(entityA))
+                {
+                    // var text = UICountPowerInBase[entityB];
+                    var capacityData = CpacityDataFromEntity[entityA];
+                    Debug.Log("11111111111111111111111111111");
+                    if(capacityData.CapacityPower < capacityData.CapacityMax)
+                        return;
+                    Debug.Log("222222222222222222222222222222222");
+                    capacityData.CapacityPower = 0;
+                    EntityCommandBuffer.SetComponent(entityA, capacityData);
+                    EntityCommandBuffer.RemoveComponent<HasTarget>(entityA);
+                    // EntityCommandBuffer.DestroyEntity(entityB);
                 }
             }
         }

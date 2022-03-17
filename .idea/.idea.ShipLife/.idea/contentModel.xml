@@ -988,6 +988,7 @@
           <e p="Bootstrapper.cs" t="Include" />
           <e p="ECS" t="Include">
             <e p="AABB2D.cs" t="Include" />
+            <e p="CollectionMaterialSystem.cs" t="Include" />
             <e p="ITarget.cs" t="Include" />
             <e p="LookupTables.cs" t="Include" />
             <e p="MapData.cs" t="Include" />
@@ -1003,8 +1004,10 @@
             <e p="ShipTag.cs" t="Include" />
             <e p="ShipTargetFinderSystem.cs" t="Include" />
             <e p="SpawnPowerPointData.cs" t="Include" />
-            <e p="SpawnRandomObjectsAuthoring.cs" t="Include" />
-            <e p="SpawnRandomObjectsSystem.cs" t="Include" />
+            <e p="SpawnPowerpointsAuthoring.cs" t="Include" />
+            <e p="SpawnRandomObjectsAuthoringBase.cs" t="Include" />
+            <e p="SpawnShipAuthoring.cs" t="Include" />
+            <e p="TagBase.cs" t="Include" />
             <e p="TagPickup.cs" t="Include" />
             <e p="TagShip.cs" t="Include" />
           </e>

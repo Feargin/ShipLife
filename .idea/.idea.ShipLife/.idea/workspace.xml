@@ -11,8 +11,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ECS/TagBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/13E65460-58E3-40AD-A820-E34DCE3B245E/07/8e3c17cc/NativeArray`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.mathematics@1.2.5/Unity.Mathematics/math.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/13E65460-58E3-40AD-A820-E34DCE3B245E/01/49a96d05/Object.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -22,12 +24,22 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ECS/TagPickup.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ECS/TagShip.cs" />
         <option value="$PROJECT_DIR$/Assets/ECS_FindTarget/UnitMoveToTargetSystem.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ECS/PickupOnTriggerSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/ECS_FindTarget/FindTargetSystem.cs" />
         <option value="$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.42/Unity.Transforms/LocalToWorld.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ECS/ShipMoveSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ECS/SpawnRandomObjectsAuthoring.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ECS/SpawnRandomObjectsSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ECS/SpawnShipSystem.cs" />
+        <option value="$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.42/Unity.Entities.Hybrid/GameObjectConversion/GameObjectConversionSystem.cs" />
+        <option value="$PROJECT_DIR$/Library/PackageCache/com.unity.entities@0.17.0-preview.42/Unity.Entities.Hybrid/GameObjectConversion/GameObjectConversionMappingSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ExtensionMethods.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ECS/SpawnPowerpointsAuthoring.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ECS/SpawnRandomObjectsAuthoringBase.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ECS/ShipMoveSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ECS/SpawnShipAuthoring.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ECS/TagBase.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ECS/PickupOnTriggerSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ECS/ShipTargetFinderSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ECS/CollectionMaterialSystem.cs" />
       </list>
     </option>
   </component>
@@ -54,10 +66,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="5748">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="5748" />
+      <option name="pid" />
       <option name="selectedOptions">
         <set />
       </option>
@@ -73,7 +85,8 @@
       <option name="presentableId" value="Default" />
       <updated>1647357755622</updated>
       <workItem from="1647357786367" duration="4047000" />
-      <workItem from="1647414111888" duration="24888000" />
+      <workItem from="1647414111888" duration="39335000" />
+      <workItem from="1647513430170" duration="9074000" />
     </task>
     <servers />
   </component>
@@ -90,69 +103,69 @@
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state width="466" height="507" key="DebuggerActiveHint/0.0.2560.1040@0.0.2560.1040" timestamp="1647434068230" />
-    <state width="2514" height="364" key="GridCell.Tab.0.bottom" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.0.bottom" timestamp="1647465019768">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.0.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.0.center" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.0.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019768" />
+    <state width="2514" height="364" key="GridCell.Tab.0.center" timestamp="1647465019768">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.0.center/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.0.left" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.0.center/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019768" />
+    <state width="2514" height="364" key="GridCell.Tab.0.left" timestamp="1647465019768">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.0.left/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.0.right" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.0.left/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019768" />
+    <state width="2514" height="364" key="GridCell.Tab.0.right" timestamp="1647465019768">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.0.right/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.1.bottom" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.0.right/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019768" />
+    <state width="2514" height="364" key="GridCell.Tab.1.bottom" timestamp="1647465090038">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.1.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.1.center" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.1.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1647465090038" />
+    <state width="2514" height="364" key="GridCell.Tab.1.center" timestamp="1647465090038">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.1.center/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.1.left" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.1.center/0.0.2560.1040@0.0.2560.1040" timestamp="1647465090038" />
+    <state width="2514" height="364" key="GridCell.Tab.1.left" timestamp="1647465090038">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.1.left/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.1.right" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.1.left/0.0.2560.1040@0.0.2560.1040" timestamp="1647465090038" />
+    <state width="2514" height="364" key="GridCell.Tab.1.right" timestamp="1647465090038">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.1.right/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.2.bottom" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.1.right/0.0.2560.1040@0.0.2560.1040" timestamp="1647465090038" />
+    <state width="2514" height="364" key="GridCell.Tab.2.bottom" timestamp="1647465019649">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.2.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.2.center" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.2.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019649" />
+    <state width="2514" height="364" key="GridCell.Tab.2.center" timestamp="1647465019649">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.2.center/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.2.left" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.2.center/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019649" />
+    <state width="2514" height="364" key="GridCell.Tab.2.left" timestamp="1647465019649">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.2.left/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.2.right" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.2.left/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019649" />
+    <state width="2514" height="364" key="GridCell.Tab.2.right" timestamp="1647465019649">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.2.right/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.3.bottom" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.2.right/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019649" />
+    <state width="2514" height="364" key="GridCell.Tab.3.bottom" timestamp="1647465019649">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.3.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.3.center" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.3.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019649" />
+    <state width="2514" height="364" key="GridCell.Tab.3.center" timestamp="1647465019649">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.3.center/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.3.left" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.3.center/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019649" />
+    <state width="2514" height="364" key="GridCell.Tab.3.left" timestamp="1647465019649">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.3.left/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
-    <state width="2514" height="364" key="GridCell.Tab.3.right" timestamp="1647434886455">
+    <state width="2514" height="364" key="GridCell.Tab.3.left/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019649" />
+    <state width="2514" height="364" key="GridCell.Tab.3.right" timestamp="1647465019649">
       <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="2514" height="364" key="GridCell.Tab.3.right/0.0.2560.1040@0.0.2560.1040" timestamp="1647434886455" />
+    <state width="2514" height="364" key="GridCell.Tab.3.right/0.0.2560.1040@0.0.2560.1040" timestamp="1647465019649" />
   </component>
 </project>

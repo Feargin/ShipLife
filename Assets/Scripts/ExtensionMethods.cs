@@ -1,8 +1,12 @@
 ﻿using System.Numerics;
 using Unity.Mathematics;
 using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.Entities;
+using UnityObject = UnityEngine.Object;
 
 namespace ShipSimulator
 {
@@ -190,6 +194,33 @@ namespace ShipSimulator
             }
 #endif
         }
+        
+        // public static Entity GetPrimaryEntityUnsafe(UnityObject uobject)
+        // {
+        //     var entity = TryGetPrimaryEntityUnsafe(uobject);
+        //     return entity;
+        // }
+        //
+        // public static Entity TryGetPrimaryEntityUnsafe(UnityObject uobject)
+        // {
+        //     if (uobject == null)
+        //         return Entity.Null;
+        //     
+        //     if (!m_JournalData.TryGetPrimaryEntity(uobject.GetInstanceID(), out var entity))
+        //         uobject.CheckObjectIsNotComponent();
+        //
+        //     return entity;
+        // }
+        //
+        // [Conditional("ENABLE_UNITY_COLLECTIONS_CHECKS")]
+        // public static void CheckObjectIsNotComponent(this UnityObject @this)
+        // {
+        //     if (@this is Component)
+        //     {
+        //         // should not be possible to get here (user-callable API's will always auto request the Component's GameObject, unless we have a bug)
+        //         throw new InvalidOperationException();
+        //     }
+        // }
     }
 }
 
