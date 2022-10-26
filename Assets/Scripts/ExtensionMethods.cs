@@ -121,6 +121,8 @@ namespace ShipSimulator
             list.RemoveAt(index);
             return true;
         }
+        
+        
 
         /// <summary>
         /// Remove an element from a <see cref="NativeList{T}"/>.

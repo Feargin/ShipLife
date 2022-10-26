@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
@@ -63,7 +64,6 @@ namespace ShipSimulator
             
             public void Execute(TriggerEvent triggerEvent)
             {
-                
                 Entity entityA = triggerEvent.EntityA; 
                 Entity entityB = triggerEvent.EntityB;
 
@@ -72,24 +72,23 @@ namespace ShipSimulator
 
                 if (AllPickups.HasComponent(entityA) && AllShips.HasComponent(entityB))
                 {
-                    var pointData = PowerPointDataFromEntity[entityA];
-                    var capacityData = CpacityDataFromEntity[entityB];
-
-                    capacityData.CapacityPower += pointData.Sustenance;
-                    EntityCommandBuffer.SetComponent(entityB, capacityData);
-                    EntityCommandBuffer.RemoveComponent<HasTarget>(entityB);
-                    EntityCommandBuffer.DestroyEntity(entityA);
+                    CollisionPickupShip(entityA, entityB);
                 }
                 else if (AllPickups.HasComponent(entityB) && AllShips.HasComponent(entityA))
                 {
-                    var pointData = PowerPointDataFromEntity[entityB];
-                    var capacityData = CpacityDataFromEntity[entityA];
-                    
-                    capacityData.CapacityPower += pointData.Sustenance;
-                    EntityCommandBuffer.SetComponent(entityA, capacityData);
-                    EntityCommandBuffer.RemoveComponent<HasTarget>(entityA);
-                    EntityCommandBuffer.DestroyEntity(entityB);
+                    CollisionPickupShip(entityB, entityA);
                 }
+            }
+
+            private void CollisionPickupShip(Entity entityA, Entity entityB)
+            {
+                var pointData = PowerPointDataFromEntity[entityA];
+                var capacityData = CpacityDataFromEntity[entityB];
+
+                capacityData.CapacityPower += pointData.Sustenance;
+                EntityCommandBuffer.SetComponent(entityB, capacityData);
+                EntityCommandBuffer.RemoveComponent<HasTarget>(entityB);
+                EntityCommandBuffer.DestroyEntity(entityA);
             }
         }
     }
@@ -112,8 +111,6 @@ namespace ShipSimulator
 
         protected override JobHandle OnUpdate(JobHandle inputDeps)
         {
-            //using var _UICountPowerInBase = GetEntityQuery(ComponentType.ReadOnly<UICountPowerInBase>()).ToEntityArray(Allocator.TempJob);
-            
             _cpacityDataFromEntity = GetComponentDataFromEntity<CapacityData>();
             var _ecb = _commandBufferSystem.CreateCommandBuffer();
             var job = new BaseOnTriggerJob
@@ -121,7 +118,6 @@ namespace ShipSimulator
                 AllBase = GetComponentDataFromEntity<TagBase>(true),
                 AllShips = GetComponentDataFromEntity<TagShip>(true),
                 EntityCommandBuffer = _ecb,
-                //UICountPowerInBase = _UICountPowerInBase,
                 CpacityDataFromEntity = _cpacityDataFromEntity,
                 
             }.Schedule(_stepPhysicsWorld.Simulation, ref _buildPhysicsWorld.PhysicsWorld, inputDeps);
@@ -140,41 +136,33 @@ namespace ShipSimulator
             public ComponentDataFromEntity<TagShip> AllShips;
             public EntityCommandBuffer EntityCommandBuffer;
       
-            // [ReadOnly] 
-            // public NativeArray<Entity> UICountPowerInBase;
-            
             public ComponentDataFromEntity<CapacityData> CpacityDataFromEntity;
             
             public void Execute(TriggerEvent triggerEvent)
             {
                 
-                Entity entityA = triggerEvent.EntityA; 
+                Entity entityA = triggerEvent.EntityA;
                 Entity entityB = triggerEvent.EntityB;
 
                 if (AllBase.HasComponent(entityA) && AllShips.HasComponent(entityB))
                 {
-                    // var text = UICountPowerInBase[entityA];
-                    var capacityData = CpacityDataFromEntity[entityB];
-                    if(capacityData.CapacityPower < capacityData.CapacityMax)
-                        return;
-                    capacityData.CapacityPower = 0;
-                    EntityCommandBuffer.SetComponent(entityB, capacityData);
-                    EntityCommandBuffer.RemoveComponent<HasTarget>(entityB);
-                    // EntityCommandBuffer.DestroyEntity(entityA);
+                    CollisionShipWithBase(entityB);
                 }
                 else if (AllBase.HasComponent(entityB) && AllShips.HasComponent(entityA))
                 {
-                    // var text = UICountPowerInBase[entityB];
-                    var capacityData = CpacityDataFromEntity[entityA];
-                    Debug.Log("11111111111111111111111111111");
-                    if(capacityData.CapacityPower < capacityData.CapacityMax)
-                        return;
-                    Debug.Log("222222222222222222222222222222222");
-                    capacityData.CapacityPower = 0;
-                    EntityCommandBuffer.SetComponent(entityA, capacityData);
-                    EntityCommandBuffer.RemoveComponent<HasTarget>(entityA);
-                    // EntityCommandBuffer.DestroyEntity(entityB);
+                    CollisionShipWithBase(entityA);
                 }
+            }
+
+            private void CollisionShipWithBase(Entity ship)
+            {
+                var capacityData = CpacityDataFromEntity[ship];
+                if(capacityData.CapacityPower < capacityData.CapacityMax)
+                    return;
+                    
+                capacityData.CapacityPower = 0;
+                EntityCommandBuffer.SetComponent(ship, capacityData);
+                EntityCommandBuffer.RemoveComponent<HasTarget>(ship);
             }
         }
     }

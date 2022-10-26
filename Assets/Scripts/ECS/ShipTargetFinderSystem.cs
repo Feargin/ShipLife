@@ -90,10 +90,6 @@ namespace ShipSimulator
     //     }
     
 
-
-
-
-
     private float _timerFind = 0;
     private const float findStep = 0.2f;
     private EndSimulationEntityCommandBufferSystem _commandBufferSystem;
@@ -193,25 +189,16 @@ namespace ShipSimulator
             var viewingAngle = Data.ViewingAngle;
 
             var pointPos = ReadyToCheck[index];
-            var left = Pos.x - radius;
-            var right = Pos.x + radius;
-            var up = Pos.y + radius;
-            var down = Pos.y - radius;
 
             var dir = Pos - pointPos;
             var angl = Forward.Angle(dir);
-
-            if (pointPos.x < left
-                || pointPos.y < down
-                || pointPos.x > right
-                || pointPos.y > up)
-                return;
 
             if (angl > viewingAngle)
                 return;
             var distance = dir.x * dir.x + dir.y * dir.y;
             if (distance <= radiusSq)
                 ResultIndex[index] = (int) math.sqrt(distance);
+            
         }
     }
 }
