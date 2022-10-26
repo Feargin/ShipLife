@@ -1,9 +1,6 @@
 using System.Collections.Generic;
-using NativeQuadTree;
-using NaughtyAttributes;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Physics.Systems;
 using UnityEngine;
@@ -54,7 +51,6 @@ internal unsafe interface ISpawnSettings
 [UpdateBefore(typeof(BuildPhysicsWorld))]
 internal abstract class SpawnRandomObjectsSystemBase<T> : SystemBase where T : struct, IComponentData, ISpawnSettings
 {
-    //public QuadTree<PowerPointData> Tree = new QuadTree<PowerPointData>(10, new Rect(float2.zero, new float2( 400, 400)));
     protected BeginInitializationEntityCommandBufferSystem EntityCommandBuffer;
     protected override void OnCreate()
     {
@@ -100,7 +96,6 @@ internal abstract class SpawnRandomObjectsSystemBase<T> : SystemBase where T : s
         ref T settings, int seed = 0)
     {
         var random = new Unity.Mathematics.Random((uint)seed);
-        //var index = (int)random.NextInt(0, settings.Prefabs.Length);
         return settings.Prefabs;
     }
 
@@ -110,6 +105,4 @@ internal abstract class SpawnRandomObjectsSystemBase<T> : SystemBase where T : s
         seed = UnityEngine.Random.Range(-9999, 9999);
         return seed;
     }
-    //protected virtual void OnBeforeInstantiatePrefab(ref T spawnSettings) {}
-    //protected virtual void ConfigureInstance(Entity instance, ref T spawnSettings) {}
 }
